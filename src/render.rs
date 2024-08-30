@@ -96,7 +96,10 @@ impl Node for IcedNode {
                 continue;
             }
 
-            let window = windows.get(window_entity).unwrap();
+            let Some(window) = windows.get(window_entity) else {
+                continue;
+            };
+
             let render_device = world.resource::<RenderDevice>().wgpu_device();
             let render_queue = world.resource::<RenderQueue>();
 
